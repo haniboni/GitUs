@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GitUs</string>
+    <string name="become_an_expert_nfrom_the_expert">Become an Expert\nfrom the Expert</string>
+    <string name="get_started">Get Started</string>
 </resources>
