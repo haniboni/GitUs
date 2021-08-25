@@ -2,4 +2,9 @@
     <string name="app_name">GitUs</string>
     <string name="become_an_expert_nfrom_the_expert">Become an Expert\nfrom the Expert</string>
     <string name="get_started">Get Started</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="repository">Repository</string>
+    <string name="name_detail">Name</string>
+    <string name="company_detail">Company</string>
 </resources>
