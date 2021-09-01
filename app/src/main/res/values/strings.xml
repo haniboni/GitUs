@@ -7,6 +7,9 @@
     <string name="repository">Repository</string>
     <string name="name_detail">Name</string>
     <string name="company_detail">Company</string>
+    <string name="exit_message">Click twice to exit app</string>
+    <string name="lives_detail">Lives</string>
+    <string name="more_btn">More</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

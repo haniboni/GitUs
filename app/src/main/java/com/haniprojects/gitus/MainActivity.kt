@@ -3,6 +3,8 @@ package com.haniprojects.gitus
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haniprojects.gitus.Constant.KEY_USER
@@ -82,4 +84,22 @@ class MainActivity : AppCompatActivity() {
         return listDataUser
     }
 
+    private var mExitTime = 0L
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 500) {
+                Toast.makeText(this, getString(R.string.exit_message), Toast.LENGTH_SHORT).show()
+                mExitTime = System.currentTimeMillis()
+            } else {
+                finishAffinity()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

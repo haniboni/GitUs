@@ -16,6 +16,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         showGetDataUser()
+        initListener()
     }
 
     @SuppressLint("SetTextI18n")
@@ -35,5 +36,14 @@ class DetailActivity : AppCompatActivity() {
         binding.btnRepo.text = getUsers.repository
         binding.btnFollower.text = getUsers.followers
         binding.btnFollowing.text = getUsers.following
+    }
+
+    fun initListener(){
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onBackPressed() {
     }
 }
