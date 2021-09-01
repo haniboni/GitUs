@@ -1,18 +1,15 @@
 package com.haniprojects.gitus
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.haniprojects.gitus.databinding.ItemListUserBinding
 
 class ListUserAdapter(private val listUserGithub: ArrayList<User>):
     RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
 
-    private val TAG: String = "ListUserAdapter"
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int)= ListViewHolder (
         ItemListUserBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup,
@@ -34,13 +31,19 @@ class ListUserAdapter(private val listUserGithub: ArrayList<User>):
                 .placeholder(R.mipmap.user_circle)
                 .into(binding.ivProfpict)
 
-
             binding.tvNameuser.text = data.name
-            binding.tvUsername.text = data.username
+            binding.tvUsername.text = StringBuilder("@" + data.username)
             binding.tvRepoValue.text = data.repository
 
-            Log.d(TAG, "foto : ${data.avatar}")
-            Log.d(TAG, "name : ${data.name}")
+            binding.btnMore.setOnClickListener{onItemClickCallback?.onItemClicked(data)}
         }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
     }
 }
