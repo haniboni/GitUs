@@ -1,17 +1,17 @@
 package com.haniprojects.gitus
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.haniprojects.gitus.Constant.KEY_USER
 import com.haniprojects.gitus.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var userAdapter: ListUserAdapter
-    private val TAG: String = "MainActivity"
     private val listUser = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +31,26 @@ class MainActivity : AppCompatActivity() {
             adapter = userAdapter
             setHasFixedSize(true)
         }
+
+        userAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: User) {
+                val intentDataUser = User(
+                    data.avatar,
+                    data.name,
+                    data.username,
+                    data.location,
+                    data.repository,
+                    data.company,
+                    data.followers,
+                    data.following
+
+                )
+                val intentData = Intent(this@MainActivity, DetailActivity::class.java)
+                intentData.putExtra(KEY_USER, intentDataUser)
+                startActivity(intentData)
+            }
+
+        })
     }
 
     @SuppressLint("Recycle")
